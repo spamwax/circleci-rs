@@ -43,7 +43,7 @@ workflows:
         - build:
             filters:  # required since `deploy` has tag filters AND requires `build`
               tags:
-                only: /.*/
+                ignore: /.*/
         - deploy:
             requires:
               - build
