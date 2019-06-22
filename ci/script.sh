@@ -3,8 +3,6 @@
 set -ex
 export PATH="$HOME/.cargo/bin:$PATH"
 
-alias cross=cargo
-
 build_phase() {
     # if [ ! -z "$DISABLE_TESTS" ]; then
     #     return
@@ -35,7 +33,8 @@ build_phase() {
             cross run --target "$TARGET" -- config --authorization hamid:12345
             ;;
         x86_64-unknown-linux-gnu)
-            cross build
+            echo $PWD
+            cargo build
             ;;
         *)
             echo "TARGET is: " $TARGET
