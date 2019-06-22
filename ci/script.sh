@@ -3,6 +3,9 @@
 set -ex
 export PATH="$HOME/.cargo/bin:$PATH"
 
+echo "CIRCLECI_TEST is ==" "$CIRCLECI_TEST" "=="
+echo "TARGET is ==" "$TARGET" "=="
+
 build_phase() {
     # if [ ! -z "$DISABLE_TESTS" ]; then
     #     return
@@ -55,7 +58,6 @@ test_phase() {
     cargo test --target "$TARGET" -- --nocapture --test-threads=1 || return
 }
 
-echo "CIRCLECI_TEST is ==" "$CIRCLECI_TEST" "=="
 # we don't run the "test phase" when doing deploys
 # if [ -z "$TRAVIS_TAG" ]; then
 build_phase
