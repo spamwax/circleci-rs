@@ -1,18 +1,4 @@
-version: 2.1
-build-n-deploy:
-    jobs:
-      - build:
-          filters:  # required since `deploy` has tag filters AND requires `build`
-            tags:
-              only: /.*/
-      - deploy:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+version: 2
 jobs:
   build:
     docker:
@@ -49,3 +35,19 @@ jobs:
       - run:
           name: Version Information
           command: rustc --version; cargo --version; rustup --version
+workflows:
+  version: 2
+  build-n-deploy:
+      jobs:
+        - build:
+            filters:  # required since `deploy` has tag filters AND requires `build`
+              tags:
+                only: /.*/
+        - deploy:
+            requires:
+              - build
+            filters:
+              tags:
+                only: /^v.*/
+              branches:
+                ignore: /.*/
