@@ -41,6 +41,8 @@ jobs:
           name: Build
           command: ci/script.sh
   deploy:
+    docker:
+      - image: circleci/rust:stretch
     environment:
       CIRCLECI_TEST: 1
     steps:
