@@ -1,6 +1,7 @@
 # This script takes care of testing your crate
 
 set -ex
+export PATH="$HOME/.cargo/bin:$PATH"
 
 build_phase() {
     # if [ ! -z "$DISABLE_TESTS" ]; then

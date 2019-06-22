@@ -23,7 +23,6 @@ jobs:
           name: Install Cross
           command: |
               ci/install.sh
-              export PATH="$HOME/.cargo/bin:$PATH"
       - run:
           name: Build
           command: ci/script.sh
