@@ -1,2 +1,2 @@
 # circleci-rs
-[![CircleCI](https://circleci.com/gh/libra/libra.svg?style=shield)](https://circleci.com/gh/spamwax/circleci)
+[![CircleCI](https://circleci.com/gh/spamwax/circleci-rs.svg?style=svg)](https://circleci.com/gh/spamwax/circleci-rs)
