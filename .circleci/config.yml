@@ -40,3 +40,6 @@ jobs:
       - run:
           name: Build
           command: ci/script.sh
+  deploy:
+    environment:
+      CIRCLECI_TEST: 1

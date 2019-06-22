@@ -53,10 +53,13 @@ test_phase() {
     fi
 
     cargo test --target "$TARGET" -- --nocapture --test-threads=1 || return
-    run_phase
 }
 
 # we don't run the "test phase" when doing deploys
 # if [ -z "$TRAVIS_TAG" ]; then
 build_phase
+
+if [ -n "$CIRCLECI_TEST" ]; then
+    test_phase
+fi
 # fi
