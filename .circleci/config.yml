@@ -43,3 +43,8 @@ jobs:
   deploy:
     environment:
       CIRCLECI_TEST: 1
+    steps:
+      - checkout
+      - run:
+          name: Version Information
+          command: rustc --version; cargo --version; rustup --version
