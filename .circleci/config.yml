@@ -6,20 +6,20 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Version Information
-        command: rustc --version; cargo --version; rustup --version
+          name: Version Information
+          command: rustc --version; cargo --version; rustup --version
       - run:
-        name: Install Dependencies
-        command: |
-            sudo sh -c 'echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list'
-            sudo apt-get update
-            sudo apt-get install -y protobuf-compiler/stretch-backports cmake golang curl
-            sudo apt-get clean
-            sudo rm -r /var/lib/apt/lists/*
-            rustup component add clippy rustfmt
+          name: Install Dependencies
+          command: |
+              sudo sh -c 'echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list'
+              sudo apt-get update
+              sudo apt-get install -y protobuf-compiler/stretch-backports cmake golang curl
+              sudo apt-get clean
+              sudo rm -r /var/lib/apt/lists/*
+              rustup component add clippy rustfmt
       - run:
-        name: Install Cross
-        command: sudo ci/install.sh
+          name: Install Cross
+          command: sudo ci/install.sh
       - run:
-        name: Build
-        command: ci/script.sh
+          name: Build
+          command: ci/script.sh
