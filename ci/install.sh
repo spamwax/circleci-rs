@@ -2,7 +2,8 @@ set -ex
 
 main() {
     local target=
-    if [ $TRAVIS_OS_NAME = linux ]; then
+    CIRCLECI_OS_NAME=$(uname)
+    if [ $CIRCLECI_OS_NAME = Linux ]; then
         target=x86_64-unknown-linux-musl
         sort=sort
     else
