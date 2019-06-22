@@ -21,7 +21,9 @@ jobs:
               rustup component add clippy rustfmt
       - run:
           name: Install Cross
-          command: ci/install.sh
+          command: |
+              ci/install.sh
+              source ~/.cargo/env || true
       - run:
           name: Build
           command: ci/script.sh
