@@ -29,6 +29,7 @@ jobs:
     docker:
       - image: circleci/rust:stretch
     environment:
+      TARGET: x86_64-unknown-linux-gnu
       CIRCLECI_TEST: true
     steps:
       - checkout
@@ -42,7 +43,7 @@ workflows:
         - build:
             filters:  # required since `deploy` has tag filters AND requires `build`
               tags:
-                only: /.*/
+                ignore: /.*/
         - deploy:
             requires:
               - build
