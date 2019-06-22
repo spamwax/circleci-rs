@@ -1,0 +1,7 @@
+[package]
+name = "circleci"
+version = "0.1.0"
+authors = ["Hamid Ghadyani <hamid@hamid.cc>"]
+edition = "2018"
+
+[dependencies]
