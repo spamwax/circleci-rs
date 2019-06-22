@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/rust:stretch
+    environment:
+      TARGET: x86_64-unknown-linux-gnu
     steps:
       - checkout
       - run:

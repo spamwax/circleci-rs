@@ -31,8 +31,11 @@ build_phase() {
             export alfred_debug=1
             cross run --target "$TARGET" -- config --authorization hamid:12345
             ;;
-        *)
+        x86_64-unknown-linux-gnu)
             cross build
+            ;;
+        *)
+            echo "TARGET is: " $TARGET
             return
             ;;
     esac
