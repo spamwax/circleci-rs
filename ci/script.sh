@@ -60,9 +60,10 @@ test_phase() {
 
 # we don't run the "test phase" when doing deploys
 # if [ -z "$TRAVIS_TAG" ]; then
-build_phase
 
 if [ -n "$CIRCLECI_TEST" ]; then
-    test_phase
+  test_phase
+else
+  build_phase
 fi
 # fi

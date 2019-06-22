@@ -33,8 +33,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Version Information
-          command: rustc --version; cargo --version; rustup --version
+          name: Test
+          command: ci/script.sh
 workflows:
   version: 2
   build-n-deploy:
