@@ -19,10 +19,10 @@ jobs:
               sudo apt-get clean
               sudo rm -r /var/lib/apt/lists/*
               rustup component add clippy rustfmt
-      - run:
-          name: Install Cross
-          command: |
-              ci/install.sh
+      # - run:
+      #     name: Install Cross
+      #     command: |
+      #         ci/install.sh
       - run:
           name: Build
           command: ci/script.sh

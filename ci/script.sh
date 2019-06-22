@@ -3,6 +3,8 @@
 set -ex
 export PATH="$HOME/.cargo/bin:$PATH"
 
+alias cross=cargo
+
 build_phase() {
     # if [ ! -z "$DISABLE_TESTS" ]; then
     #     return
