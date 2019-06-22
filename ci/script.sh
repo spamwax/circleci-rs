@@ -33,11 +33,11 @@ build_phase() {
             cross run --target "$TARGET" -- config --authorization hamid:12345
             ;;
         x86_64-unknown-linux-gnu)
-            echo $PWD
             cargo build
+            cargo run
             ;;
         *)
-            echo "TARGET is: " $TARGET
+            echo "TARGET is: " "$TARGET"
             return
             ;;
     esac
@@ -47,7 +47,7 @@ build_phase() {
 # TODO This is the "test phase", tweak it as you see fit
 test_phase() {
 
-    if [ ! -z "$DISABLE_TESTS" ]; then
+    if [ -n "$DISABLE_TESTS" ]; then
         cross build --target "$TARGET"
         return
     fi
