@@ -60,3 +60,9 @@ workflows:
                 only: /^v.*/
               branches:
                 ignore: /.*/
+  build-n-test:
+      jobs:
+        - build
+        - mytest:
+            requires:
+              - build
