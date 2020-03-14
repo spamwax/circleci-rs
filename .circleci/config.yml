@@ -33,12 +33,16 @@ jobs:
           name: Test
           command: ci/script.sh
   mytest:
+    docker:
+      - image: circleci/rust:stretch
     environment:
       TARGET: x86_64-unknown-linux-gnu
     steps:
+      - checkout
       - run:
-        name: Show the temp file
-        command: cat /home/circleci/circleci_temp.txt
+          name: Show the Results
+          command: |
+              cat /home/circleci/circleci_temp.txt
 
 workflows:
   version: 2
