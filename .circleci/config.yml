@@ -42,6 +42,7 @@ jobs:
       - run:
           name: Show the Results
           command: |
+              cargo run
               cat /home/circleci/circleci_temp.txt
 
 workflows:
