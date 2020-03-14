@@ -56,9 +56,3 @@ workflows:
                 only: /^v.*/
               branches:
                 ignore: /.*/
-  show-results:
-    jobs:
-      - build:
-      - mytest:
-          requires:
-            - build
