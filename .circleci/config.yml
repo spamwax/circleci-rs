@@ -15,13 +15,9 @@ jobs:
           command: |
               sudo sh -c 'echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list'
               sudo apt-get update
-              # sudo apt-get install -y protobuf-compiler/stretch-backports cmake golang curl
               sudo apt-get clean
               sudo rm -r /var/lib/apt/lists/*
               rustup component add clippy rustfmt
-      # - run:
-      #     name: Install Cross
-      #     command: ci/install.sh
       - run:
           name: Build
           command: ci/script.sh
@@ -36,6 +32,14 @@ jobs:
       - run:
           name: Test
           command: ci/script.sh
+  mytest:
+    environment:
+      TARGET: x86_64-unknown-linux-gnu
+    steps:
+      - run:
+        name: Show the temp file
+        command: cat /home/circleci/circleci_temp.txt
+
 workflows:
   version: 2
   build-n-deploy:
@@ -52,3 +56,8 @@ workflows:
                 only: /^v.*/
               branches:
                 ignore: /.*/
+  show-results:
+    jobs:
+      - mytest:
+        requires:
+          - build-n-deploy
