@@ -58,6 +58,7 @@ workflows:
                 ignore: /.*/
   show-results:
     jobs:
+      - build:
       - mytest:
-        requires:
-          - build-n-deploy
+          requires:
+            - build
