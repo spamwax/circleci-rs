@@ -30,6 +30,7 @@ jobs:
     environment:
       TARGET: x86_64-unknown-linux-gnu
       CIRCLECI_TEST: true
+      VERSION: 1.10.3
     steps:
       - run:
           command: |
@@ -39,7 +40,7 @@ jobs:
           command: |
             go get github.com/tcnksm/ghr
             which ghr
-            VERSION=1.1024.3
+            export VERSION=1.1024.3
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
           # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
   mytest:
