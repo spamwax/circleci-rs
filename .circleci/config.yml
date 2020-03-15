@@ -36,7 +36,7 @@ jobs:
             echo dummy > ./artifacts/file
       - run:
           command: |
-            grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
+            grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.18 ./artifacts/file
   mytest:
     docker:
       - image: circleci/rust:stretch
