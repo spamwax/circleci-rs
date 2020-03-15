@@ -81,7 +81,7 @@ jobs:
             [ -n ${GITHUB_TOKEN} ] && echo "I have it!"
             [ -z ${GITHUB_TOKEN} ] && echo "I DO NOT have it!"
             [ -f target/debug/circleci ] && echo "at project" && export artifacts=target/debug/circleci
-            [ -f project/target/debug/circleci ] && echo "at project" && export artifacts=target/debug/circleci
+            [ -f project/target/debug/circleci ] && echo "at circleci" && export artifacts=project/target/debug/circleci
             echo ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${VERSION} ${artifacts}
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${artifacts}
           # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
@@ -98,7 +98,7 @@ workflows:
               - build
             filters:
               tags:
-                ignore: /.*/
+                ignore: /^v.*/
         - deploy:
             requires:
               - build
