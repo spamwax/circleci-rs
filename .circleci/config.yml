@@ -36,10 +36,10 @@ jobs:
             mkdir artifacts
             echo dummy > ./artifacts/file
       - run:
-          command: go get github.com/tcnksm/ghr
-      - run: |
-          VERSION=1.1024.3
-          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
+          command: |
+            go get github.com/tcnksm/ghr
+            VERSION=1.1024.3
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
           # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
   mytest:
     docker:
