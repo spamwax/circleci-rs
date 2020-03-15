@@ -1,8 +1,8 @@
 #!/bin/bash
-[ -f /tmp/res_dir/circleci ] \&\& /tmp/res_dir/circleci
-if [[ -f /tmp/res_dir/circleci ]]; then
-    /tmp/res_dir/circleci
-    cat /tmp/res_dir/circleci_temp.txt
+[ -f res_dir/circleci ] && res_dir/circleci
+if [[ -f res_dir/circleci ]]; then
+    res_dir/circleci
+    cat res_dir/circleci_temp.txt
 else
     echo "Nope!"; exit 1
 fi
