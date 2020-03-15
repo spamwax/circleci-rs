@@ -40,10 +40,11 @@ jobs:
             cp /home/circleci/circleci_temp.txt res_dir/
 
       - persist_to_workspace:
-          root: res_dir
+          root: /home/circleci
           paths:
-            - circleci
-            - circleci_temp.txt
+            - project
+            # - circleci
+            # - circleci_temp.txt
 
   mytest:
     # docker:
@@ -52,10 +53,11 @@ jobs:
     environment:
       TARGET: x86_64-unknown-linux-gnu
     steps:
-      - checkout
+      # - checkout
       - attach_workspace:
-          at: res_dir
+          at: project
       - run: ci/run_tests.sh
+      - run: cargo run
       # - run:
       #     name: Show the Results
       #     command: |
