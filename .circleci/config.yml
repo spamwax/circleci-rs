@@ -1,6 +1,6 @@
 version: 2.1
-orbs:
-  github-release: h-matsuo/github-release@0.1.3
+# orbs:
+#   github-release: h-matsuo/github-release@0.1.3
 jobs:
   build:
     docker:
@@ -25,24 +25,21 @@ jobs:
           command: ci/script.sh
   deploy:
     description: Create dummy file and publish a new release tagged `vX.Y.Z`.
+    docker:
+      - image: circleci/golang:1.8
     environment:
       TARGET: x86_64-unknown-linux-gnu
       CIRCLECI_TEST: true
-    executor: github-release/default
     steps:
       - run:
           command: |
             mkdir artifacts
             echo dummy > ./artifacts/file
-      # - github-release/create:
-      #     tag: v1.2.3
-      #     title: Version v1.2.3
-      #     description: This release is version v1.2.3
-      #     file-path: ./artifacts/file
       - run:
-          command: go get github.com/aktau/github-release github.com/tcnksm/ghr
+          command: go get github.com/tcnksm/ghr
       - run:
-          command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
+          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
+          # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
   mytest:
     docker:
       - image: circleci/rust:stretch
