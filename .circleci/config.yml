@@ -34,11 +34,9 @@ jobs:
           command: |
             mkdir artifacts
             echo dummy > ./artifacts/file
-      - github-release/create:
-          tag: v0.0.17
-          title: v0.0.17
-          description: This release is version v0.0.17
-          file-path: ./artifacts/file
+      - run:
+          command: |
+            grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
   mytest:
     docker:
       - image: circleci/rust:stretch
