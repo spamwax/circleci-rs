@@ -41,6 +41,7 @@ jobs:
             go get github.com/tcnksm/ghr
             which ghr
             export VERSION=1.1024.3
+            echo ${GITHUB_TOKEN} ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${VERSION}
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
           # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
   mytest:
