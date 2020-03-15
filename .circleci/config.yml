@@ -55,7 +55,7 @@ jobs:
     steps:
       # - checkout
       - attach_workspace:
-          at: project
+          at: /home/circleci
       - run: ci/run_tests.sh
       - run: cargo run
       # - run:
