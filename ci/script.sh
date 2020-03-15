@@ -22,18 +22,18 @@ build_phase() {
             export alfred_workflow_cache=/Users/travis/.config/alfred-pinboard-rs
             mkdir "/Users/travis/.config/alfred-pinboard-rs"
 
-            cross run --target "$TARGET" -- config --authorization hamid:12345
-            cross run --target "$TARGET" -- config -d
+            cargo run --target "$TARGET" -- config --authorization hamid:12345
+            cargo run --target "$TARGET" -- config -d
             ;;
         i686-apple-darwin)
             export alfred_debug=1
-            cross run --target "$TARGET" -- config --authorization hamid:12345
+            cargo run --target "$TARGET" -- config --authorization hamid:12345
             export alfred_versioin=3.6
-            cross run --target "$TARGET" -- config -d
+            cargo run --target "$TARGET" -- config -d
             ;;
         armv7-linux-androideabi)
             export alfred_debug=1
-            cross run --target "$TARGET" -- config --authorization hamid:12345
+            cargo run --target "$TARGET" -- config --authorization hamid:12345
             ;;
         x86_64-unknown-linux-gnu)
             cargo build
@@ -51,7 +51,7 @@ build_phase() {
 test_phase() {
 
     if [ -n "$DISABLE_TESTS" ]; then
-        cross build --target "$TARGET"
+        cargo build --target "$TARGET"
         return
     fi
 
