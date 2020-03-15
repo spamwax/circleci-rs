@@ -72,18 +72,18 @@ jobs:
       TARGET: x86_64-unknown-linux-gnu
       CIRCLECI_TEST: true
     steps:
-      - run:
-          command: |
-            mkdir artifacts
-            echo dummy > ./artifacts/file
+      - attach_workspace:
+          at: /home/circleci
       - run:
           command: |
             go get github.com/tcnksm/ghr
             export VERSION=${CIRCLE_TAG}
             [ -n ${GITHUB_TOKEN} ] && echo "I have it!"
             [ -z ${GITHUB_TOKEN} ] && echo "I DO NOT have it!"
-            echo ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${VERSION}
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/file
+            [ -f target/debug/circleci ] && echo "at project" && export artifacts=target/debug/circleci
+            [ -f project/target/debug/circleci ] && echo "at project" && export artifacts=target/debug/circleci
+            echo ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${VERSION} ${artifacts}
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ${artifacts}
           # command: grh --token $GITHUB_TOKEN --username $CIRCLE_PROJECT_USERNAME --repository $CIRCLE_PROJECT_REPONAME --commitish $CIRCLE_SHA1 -delete v0.0.17 ./artifacts/file
 workflows:
   version: 2.1
