@@ -26,7 +26,7 @@ jobs:
   deploy:
     description: Create dummy file and publish a new release tagged `vX.Y.Z`.
     docker:
-      - image: circleci/golang:1.8
+      - image: circleci/golang:1.13
     environment:
       TARGET: x86_64-unknown-linux-gnu
       CIRCLECI_TEST: true
