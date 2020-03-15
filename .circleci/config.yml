@@ -52,6 +52,7 @@ jobs:
     environment:
       TARGET: x86_64-unknown-linux-gnu
     steps:
+      - checkout
       - attach_workspace:
           at: res_dir
       - run: ci/run_tests.sh
