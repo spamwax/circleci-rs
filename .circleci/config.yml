@@ -1,17 +1,12 @@
 version: 2.1
-# orbs:
-#   github-release: h-matsuo/github-release@0.1.3
 
 executors:
   my-executor:
     docker:
       - image: circleci/rust:stretch
-    # working_directory: /home/circleci
 
 jobs:
   build:
-    # docker:
-    #   - image: circleci/rust:stretch
     executor: my-executor
     environment:
       TARGET: x86_64-unknown-linux-gnu
@@ -43,12 +38,8 @@ jobs:
           root: /home/circleci
           paths:
             - project
-            # - circleci
-            # - circleci_temp.txt
 
   mytest:
-    # docker:
-    #   - image: circleci/rust:stretch
     executor: my-executor
     environment:
       TARGET: x86_64-unknown-linux-gnu
